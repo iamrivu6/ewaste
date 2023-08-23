@@ -5,6 +5,7 @@ import img1 from "../assets/pic1.png";
 import img2 from "../assets/pic2.png";
 import img3 from "../assets/clg.png";
 
+
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [listing, setListing] = useState([]);
