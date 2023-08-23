@@ -96,7 +96,7 @@ export default function Home() {
           </div>
           <p className="ml-10">Trend in Growth of E-Waste in India</p>
           <p className="text-2xl mt-20">
-            Please proceedd to our marketplace in the nextpage where people can
+            Please proceed to our marketplace in the nextpage where people can
             trade their E-Waste materials
           </p>
           <button
