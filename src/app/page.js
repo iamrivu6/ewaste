@@ -17,7 +17,7 @@ export default function Home() {
   const [lastPage, setLastPage] = useState(false);
   const [buyerListing, setBuyerListing] = useState([
     {
-      Product: "Circuit boards",
+      Product: "Circuit Boards",
       Seller: "MV Enterprise",
       Contact: "+917822671187",
     },
