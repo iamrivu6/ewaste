@@ -5,9 +5,10 @@ import img1 from "../assets/pic1.png";
 import img2 from "../assets/pic2.png";
 import img3 from "../assets/clg.png";
 
-
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
   const [listing, setListing] = useState([]);
   const [productName, setProductName] = useState("");
   const [seller, setSeller] = useState("");
@@ -17,7 +18,7 @@ export default function Home() {
   const [lastPage, setLastPage] = useState(false);
   const [buyerListing, setBuyerListing] = useState([
     {
-      Product: "Circuit Boards",
+      Product: "Circuit boards",
       Seller: "MV Enterprise",
       Contact: "+917822671187",
     },
@@ -33,6 +34,7 @@ export default function Home() {
     },
   ]);
   const handleLogInBtn = () => {
+    if (userEmail == '' || userPassword == '') return
     setLoggedIn(true);
   };
   const handleGoToLogin = () => {
@@ -67,8 +69,17 @@ export default function Home() {
     <main className="w-screen min-h-screen flex flex-col items-center mt-10">
       {home == true && (
         <div className="w-[90vw]">
-          <div className="title text-3xl mb-[100px]">
+          <div className="btn-container flex flex-row justify-between">
+          <div className="title text-3xl mb-[50px]">
             Electronic Waste Management
+          </div>
+          <button
+            type="button"
+            onClick={handleGoToLogin}
+            className="rounded bg-indigo-600 px-2 py-1 mb-10 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Go To Login
+          </button>
           </div>
           <p className="text-2xl">
             E-waste is any electrical or electronic equipment that’s been
@@ -99,13 +110,7 @@ export default function Home() {
             Please proceed to our marketplace in the nextpage where people can
             trade their E-Waste materials
           </p>
-          <button
-            type="button"
-            onClick={handleGoToLogin}
-            className="rounded bg-indigo-600 px-2 py-1 mt-10 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Go To Login
-          </button>
+          
         </div>
       )}
       {loggedIn == false && home == false && lastPage == false && (
@@ -125,6 +130,8 @@ export default function Home() {
                 type="email"
                 name="email"
                 id="email"
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="you@example.com"
               />
@@ -142,6 +149,8 @@ export default function Home() {
                 type="password"
                 name="pass"
                 id="pass"
+                value={userPassword}
+                onChange={(e) => setUserPassword(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="**********"
               />
@@ -179,7 +188,7 @@ export default function Home() {
       )}
       {loggedIn == true && lastPage == false && (
         <>
-          <div className="title text-3xl">{userType === 'Buyer' ? 'Buyer Listing' : 'Seller Listing'}</div>
+          <div className="title text-3xl">{userType === 'Buyer' ? 'Seller Listing' : 'Seller Listing'}</div>
           <div className="listing-container mt-10">
             {userType === "Buyer" &&
               buyerListing.map((list, index) => (
@@ -243,7 +252,7 @@ export default function Home() {
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Name
+                  Type of Product
                 </label>
                 <div className="mt-2">
                   <input
@@ -251,7 +260,7 @@ export default function Home() {
                     name="email"
                     id="email"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    placeholder="Mobiles/Laptops/etc"
+                    placeholder="Mobiles, Laptops, Etc"
                     value={productName}
                     onChange={(e) => setProductName(e.target.value)}
                   />
@@ -316,7 +325,7 @@ export default function Home() {
       {lastPage == true && (
         <>
           <Image className="mt-5" src={img3} alt="PIC1" />
-          <p className="w-[75vw] mt-10">
+          <p className="w-[75vw] mt-10 text-justify">
             We are pleased to have successfully completed the Mini project
             “E-WASTE MANAGEMENT”. We thoroughly enjoyed the process of working
             on this project and gained a lot of knowledge doing so. We would
